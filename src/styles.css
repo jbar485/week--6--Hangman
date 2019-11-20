@@ -1,17 +1,26 @@
-#playCard {
-  display: none;
-}
-#end {
-  display: none;
-}
-#feedMe {
-  display: none;
+body, html {
+  height: 100%;
 }
 
-#starving {
-  display: none;
+#bg {
+  /* The image used */
+  background-image: url(http://www.freehangmangame.com/dinosaur/hm5.gif);
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-#error, #popUp {
+#startMenu {
+  text-align: center;
+  margin-top: 10%;
+  margin-left: 65%;
+}
+
+#playMenu {
   display: none;
 }

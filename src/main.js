@@ -1,59 +1,41 @@
-import { Tamagotchi } from './../src/tamagotchi.js';
+import { Hangman } from './../src/hangman.js';
+import { HangmanService } from './../src/hangman-service.js';
 import $ from 'jquery';
 import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
 $(document).ready(function(){
-  let player = new Tamagotchi();
-  $("#namePage").submit(function(event){
+  $("#start").click(function(event){
     event.preventDefault();
-    player.name = $("input#petName").val();
+    $("#startMenu").hide();
+    $("#playMenu").show();
+    (async () => {
+      let hangmanService = new HangmanService();
+      const answer = await hangmanService.getHangmanAnswer(name);
+      getAnswer(answer)
 
-    let food = player.foodLevel;
-    try {
-      if (player.name === "") {
-        throw Error("Need a name")
-      }else {
-        player.setHunger();
-        player.updateStatus();
-        $("#namePage").hide();
-        $("#playCard").show();
-        $(".yourPetName").text(player.name);
-        $("#yourPetHunger").text(food);
-        console.log(player);
-      }
-    } catch (error) {
-      $("#hideMe").hide();
-      $("#error").show();
-    }
-    $("#feed").click(function(){
-      player.feed();
-      console.log(player);
-
-    });
-    let request = new XMLHttpRequest();
-    let randomNumber = Math.floor(Math.random() * (200 - 1) + 1);
-    const url = `https://pokeapi.co/api/v2/pokemon/${randomNumber}`;
-
-    request.onreadystatechange = function() {
-      if (this.readyState === 4 && this.status === 200) {
-        const response = JSON.parse(this.responseText);
-        getElements(response);
-      }
-    }
-
-    request.open("GET", url, true);
-    request.send();
-
-    const getElements = function(response) {
-      $('#showWeedle').attr("src", response.sprites.front_shiny);
-      console.log("here");
+    })();
+    function getAnswer(answer) {
+      $("#here").text(`${answer[0][0]}`)
     }
   });
-
-  player.setPopUp();
-
-  $("button.restart").click(function(){
+  $("button#newGame").click(function(){
     location.reload();
+
+  });
+  $("button#guess").click(function(event){
+
   });
 });
+
+
+// working hangman game
+// we need to have 1 form field
+// split dino ipsum name into an array with underlines
+// if statement to compair if their guesses are included in the answer
+// add a point when a user is incorrect
+// if the user loses, display the correct word
+// display each letter a user guesses and append them
+// have a max of seven points(trys or death!)
+// make sure we have a working api call from dino ipsum
