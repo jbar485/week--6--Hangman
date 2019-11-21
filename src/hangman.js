@@ -1,9 +1,9 @@
-export class Hangman {
-  constructor(inputLetter) {
+export class Hangman {  constructor(inputLetter) {
     this.dinoArray = [],
     this.underArray = [],
     this.inputLetter = inputLetter,
-    this.counter = 0
+    this.counter = 0,
+    this.color = false
   }
 
   addToArray(dino) {
@@ -18,6 +18,8 @@ export class Hangman {
   }
 
   play() {
+    this.color = false;
+
     if(this.dinoArray.includes(this.inputLetter)){
       this.counter += 0;
     }else{
@@ -27,8 +29,9 @@ export class Hangman {
     for (var i = 0; i < this.dinoArray.length; i++) {
       if (this.inputLetter === this.dinoArray[i]) {
         this.underArray[i] = (this.inputLetter);
+        this.color = true;
       }
     }
   }
-  
+
 }

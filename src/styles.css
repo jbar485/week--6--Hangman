@@ -28,3 +28,9 @@ body, html {
 #afterMenu {
   display: none;
 }
+#listOfLetters1 {
+  color: red;
+}
+#listOfLetters {
+  color: green;
+}

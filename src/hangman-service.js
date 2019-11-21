@@ -5,7 +5,7 @@ export class HangmanService {
       let dinoIpsum = await answer.json();
       return dinoIpsum;
     }catch(error) {
-      alert("There was an error bitch:" + error.message);
+      alert("There was an error:" + error.message);
     }
   }
 }
