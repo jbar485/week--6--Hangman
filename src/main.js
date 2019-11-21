@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
 $(document).ready(function(){
+  let newHangman = new Hangman();
   $("#start").click(function(event){
     event.preventDefault();
     $("#startMenu").hide();
@@ -13,11 +14,17 @@ $(document).ready(function(){
     (async () => {
       let hangmanService = new HangmanService();
       const answer = await hangmanService.getHangmanAnswer(name);
-      getAnswer(answer)
+      getAnswer(answer);
 
     })();
     function getAnswer(answer) {
-      $("#here").text(`${answer[0][0]}`)
+      let randomDino = (`${answer[0][0]}`);
+      let random = randomDino.split("");
+      newHangman.addToArray(random);
+      newHangman.addToUnder();
+      $("#here").text(newHangman.underArray.join(" "));
+      console.log(newHangman);
+
     }
   });
   $("button#newGame").click(function(){
@@ -25,7 +32,11 @@ $(document).ready(function(){
 
   });
   $("button#guess").click(function(event){
-
+    event.preventDefault();
+    let input = $("#letterInput").val();
+    newHangman.inputLetter = input;
+    newHangman.play();
+    console.log(newHangman);
   });
 });
 
