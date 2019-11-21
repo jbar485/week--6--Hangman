@@ -18,7 +18,7 @@ $(document).ready(function(){
 
     })();
     function getAnswer(answer) {
-      let randomDino = (`${answer[0][0]}`);
+      let randomDino = (`${answer[0][0]}`).toLowerCase();
       let random = randomDino.split("");
       newHangman.addToArray(random);
       newHangman.addToUnder();
