@@ -27,15 +27,22 @@ $(document).ready(function(){
 
     }
   });
-  $("button#newGame").click(function(){
+  $("button.newGame").click(function(){
     location.reload();
 
   });
   $("button#guess").click(function(event){
     event.preventDefault();
-    let input = $("#letterInput").val();
+    let input = $("#letterInput").val().toLowerCase();
+    $("#letterInput").val("");
     newHangman.inputLetter = input;
     newHangman.play();
+    if (newHangman.counter === 7) {
+      $("#playMenu").hide();
+      $("#afterMenu").show();
+    }
+    $("#here").text(newHangman.underArray.join(" "));
+    $("#listOfLetters").append(newHangman.inputLetter + " ");
     console.log(newHangman);
   });
 });

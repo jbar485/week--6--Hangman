@@ -24,3 +24,7 @@ body, html {
 #playMenu {
   display: none;
 }
+
+#afterMenu {
+  display: none;
+}
